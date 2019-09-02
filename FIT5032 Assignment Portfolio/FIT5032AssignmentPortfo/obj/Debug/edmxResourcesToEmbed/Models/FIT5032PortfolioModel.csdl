@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="FIT5032PortfolioModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="FIT5032PortfolioModelContainer" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Hotels" EntityType="FIT5032PortfolioModel.Hotel" />
+    <EntitySet Name="Rooms" EntityType="FIT5032PortfolioModel.Room" />
+    <AssociationSet Name="HotelRoom" Association="FIT5032PortfolioModel.HotelRoom">
+      <End Role="Hotel" EntitySet="Hotels" />
+      <End Role="Room" EntitySet="Rooms" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Hotel">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HotelName" Type="String" Nullable="false" />
+    <NavigationProperty Name="Rooms" Relationship="FIT5032PortfolioModel.HotelRoom" FromRole="Hotel" ToRole="Room" />
+  </EntityType>
+  <EntityType Name="Room">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoomName" Type="String" Nullable="false" />
+    <Property Name="RoomDescription" Type="String" Nullable="false" />
+    <NavigationProperty Name="Hotel" Relationship="FIT5032PortfolioModel.HotelRoom" FromRole="Room" ToRole="Hotel" />
+    <Property Name="HotelId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="HotelRoom">
+    <End Type="FIT5032PortfolioModel.Hotel" Role="Hotel" Multiplicity="1" />
+    <End Type="FIT5032PortfolioModel.Room" Role="Room" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Room">
+        <PropertyRef Name="HotelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
