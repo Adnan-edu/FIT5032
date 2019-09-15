@@ -5,9 +5,13 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="f015e4d255ae4e32adf0c6d4d691cf61" Name="Diagram1" >
-        <EntityTypeShape EntityType="FIT5032PortfolioModel.Hotel" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="FIT5032PortfolioModel.Room" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="FIT5032PortfolioModel.Hotel" Width="1.5" PointX="2.125" PointY="0.875" />
+        <EntityTypeShape EntityType="FIT5032PortfolioModel.Room" Width="1.5" PointX="4.375" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="FIT5032PortfolioModel.HotelRoom" />
+        <EntityTypeShape EntityType="FIT5032PortfolioModel.UserAccounts" Width="1.5" PointX="2.25" PointY="3.375" />
+        <EntityTypeShape EntityType="FIT5032PortfolioModel.UserRole" Width="1.5" PointX="4.875" PointY="3.75" />
+        <AssociationConnector Association="FIT5032PortfolioModel.UserAccountsUserRole" />
+        <AssociationConnector Association="FIT5032PortfolioModel.HotelUserAccounts" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

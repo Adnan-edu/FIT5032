@@ -19,5 +19,39 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="UserAccounts">
+      <EntityTypeMapping TypeName="IsTypeOf(FIT5032PortfolioModel.UserAccounts)">
+        <MappingFragment StoreEntitySet="UserAccounts">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="ConfirmPassword" ColumnName="ConfirmPassword" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserRoles">
+      <EntityTypeMapping TypeName="IsTypeOf(FIT5032PortfolioModel.UserRole)">
+        <MappingFragment StoreEntitySet="UserRoles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="UserAccountsUserRole" TypeName="FIT5032PortfolioModel.UserAccountsUserRole" StoreEntitySet="UserAccounts">
+      <EndProperty Name="UserRole">
+        <ScalarProperty Name="Id" ColumnName="UserRole_Id" />
+      </EndProperty>
+      <EndProperty Name="UserAccounts">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="HotelUserAccounts" TypeName="FIT5032PortfolioModel.HotelUserAccounts" StoreEntitySet="Hotels">
+      <EndProperty Name="UserAccounts">
+        <ScalarProperty Name="Id" ColumnName="UserAccount_Id" />
+      </EndProperty>
+      <EndProperty Name="Hotel">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping>

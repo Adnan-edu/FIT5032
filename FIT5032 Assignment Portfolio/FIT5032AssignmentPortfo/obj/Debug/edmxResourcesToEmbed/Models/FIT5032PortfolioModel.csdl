@@ -7,6 +7,16 @@
       <End Role="Hotel" EntitySet="Hotels" />
       <End Role="Room" EntitySet="Rooms" />
     </AssociationSet>
+    <EntitySet Name="UserAccounts" EntityType="FIT5032PortfolioModel.UserAccounts" />
+    <EntitySet Name="UserRoles" EntityType="FIT5032PortfolioModel.UserRole" />
+    <AssociationSet Name="UserAccountsUserRole" Association="FIT5032PortfolioModel.UserAccountsUserRole">
+      <End Role="UserAccounts" EntitySet="UserAccounts" />
+      <End Role="UserRole" EntitySet="UserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="HotelUserAccounts" Association="FIT5032PortfolioModel.HotelUserAccounts">
+      <End Role="Hotel" EntitySet="Hotels" />
+      <End Role="UserAccounts" EntitySet="UserAccounts" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Hotel">
     <Key>
@@ -15,6 +25,7 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="HotelName" Type="String" Nullable="false" />
     <NavigationProperty Name="Rooms" Relationship="FIT5032PortfolioModel.HotelRoom" FromRole="Hotel" ToRole="Room" />
+    <NavigationProperty Name="UserAccount" Relationship="FIT5032PortfolioModel.HotelUserAccounts" FromRole="Hotel" ToRole="UserAccounts" />
   </EntityType>
   <EntityType Name="Room">
     <Key>
@@ -37,5 +48,32 @@
         <PropertyRef Name="HotelId" />
       </Dependent>
     </ReferentialConstraint>
+  </Association>
+  <EntityType Name="UserAccounts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Email" Type="String" Nullable="false" />
+    <Property Name="Password" Type="String" Nullable="false" />
+    <Property Name="ConfirmPassword" Type="String" Nullable="false" />
+    <NavigationProperty Name="UserRole" Relationship="FIT5032PortfolioModel.UserAccountsUserRole" FromRole="UserAccounts" ToRole="UserRole" />
+    <NavigationProperty Name="Hotel" Relationship="FIT5032PortfolioModel.HotelUserAccounts" FromRole="UserAccounts" ToRole="Hotel" />
+  </EntityType>
+  <EntityType Name="UserRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" Nullable="false" />
+    <NavigationProperty Name="UserAccounts" Relationship="FIT5032PortfolioModel.UserAccountsUserRole" FromRole="UserRole" ToRole="UserAccounts" />
+  </EntityType>
+  <Association Name="UserAccountsUserRole">
+    <End Type="FIT5032PortfolioModel.UserAccounts" Role="UserAccounts" Multiplicity="*" />
+    <End Type="FIT5032PortfolioModel.UserRole" Role="UserRole" Multiplicity="1" />
+  </Association>
+  <Association Name="HotelUserAccounts">
+    <End Type="FIT5032PortfolioModel.Hotel" Role="Hotel" Multiplicity="0..1" />
+    <End Type="FIT5032PortfolioModel.UserAccounts" Role="UserAccounts" Multiplicity="1" />
   </Association>
 </Schema>

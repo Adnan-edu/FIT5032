@@ -27,5 +27,7 @@ namespace FIT5032AssignmentPortfo.Models
     
         public virtual DbSet<Hotel> Hotels { get; set; }
         public virtual DbSet<Room> Rooms { get; set; }
+        public virtual DbSet<UserAccounts> UserAccounts { get; set; }
+        public virtual DbSet<UserRole> UserRoles { get; set; }
     }
 }

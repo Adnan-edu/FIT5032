@@ -69,7 +69,6 @@ C:\Users\Adnan\Desktop\Adnan\FIT5032\FIT5032 Assignment Portfolio\FIT5032Assignm
 C:\Users\Adnan\Desktop\Adnan\FIT5032\FIT5032 Assignment Portfolio\FIT5032AssignmentPortfo\bin\Newtonsoft.Json.xml
 C:\Users\Adnan\Desktop\Adnan\FIT5032\FIT5032 Assignment Portfolio\FIT5032AssignmentPortfo\bin\Antlr3.Runtime.pdb
 C:\Users\Adnan\Desktop\Adnan\FIT5032\FIT5032 Assignment Portfolio\FIT5032AssignmentPortfo\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\Adnan\Desktop\Adnan\FIT5032\FIT5032 Assignment Portfolio\FIT5032AssignmentPortfo\obj\Debug\FIT5032AssignmentPortfo.csprojAssemblyReference.cache
 C:\Users\Adnan\Desktop\Adnan\FIT5032\FIT5032 Assignment Portfolio\FIT5032AssignmentPortfo\obj\Debug\FIT5032AssignmentPortfo.csproj.CoreCompileInputs.cache
 C:\Users\Adnan\Desktop\Adnan\FIT5032\FIT5032 Assignment Portfolio\FIT5032AssignmentPortfo\obj\Debug\FIT5032AssignmentPortfo.csproj.CopyComplete
 C:\Users\Adnan\Desktop\Adnan\FIT5032\FIT5032 Assignment Portfolio\FIT5032AssignmentPortfo\obj\Debug\FIT5032AssignmentPortfo.dll
@@ -78,3 +77,4 @@ C:\Users\Adnan\Desktop\Adnan\FIT5032\FIT5032 Assignment Portfolio\FIT5032Assignm
 C:\Users\Adnan\Desktop\Adnan\FIT5032\FIT5032 Assignment Portfolio\FIT5032AssignmentPortfo\bin\EntityFramework.SqlServer.dll
 C:\Users\Adnan\Desktop\Adnan\FIT5032\FIT5032 Assignment Portfolio\FIT5032AssignmentPortfo\bin\EntityFramework.xml
 C:\Users\Adnan\Desktop\Adnan\FIT5032\FIT5032 Assignment Portfolio\FIT5032AssignmentPortfo\bin\EntityFramework.SqlServer.xml
+C:\Users\Adnan\Desktop\Adnan\FIT5032\FIT5032 Assignment Portfolio\FIT5032AssignmentPortfo\obj\Debug\FIT5032AssignmentPortfo.csprojAssemblyReference.cache

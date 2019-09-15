@@ -38,7 +38,11 @@ namespace FIT5032AssignmentPortfo.Controllers
         // GET: Hotels/Create
         public ActionResult Create()
         {
-            return View();
+            if ((String)Session["RoleName"] == "ADMIN")
+            {
+                return View();
+            }
+            return RedirectToAction("Dashboard", "Dashboard", new { area = "" });
         }
 
         // POST: Hotels/Create
@@ -46,10 +50,12 @@ namespace FIT5032AssignmentPortfo.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,HotelName")] Hotel hotel)
+        public ActionResult Create(Hotel hotel)
         {
             if (ModelState.IsValid)
             {
+                //Assigning the user as a manager
+                hotel.UserAccount.UserRole = db.UserRoles.Single(u => u.RoleName == "MANAGER" && u.Id == 7);
                 db.Hotels.Add(hotel);
                 db.SaveChanges();
                 return RedirectToAction("Index");

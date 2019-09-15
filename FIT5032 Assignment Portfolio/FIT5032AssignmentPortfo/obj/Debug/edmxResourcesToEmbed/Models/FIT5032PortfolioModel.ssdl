@@ -3,9 +3,19 @@
   <EntityContainer Name="FIT5032PortfolioModelStoreContainer">
     <EntitySet Name="Hotels" EntityType="FIT5032PortfolioModel.Store.Hotels" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Rooms" EntityType="FIT5032PortfolioModel.Store.Rooms" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserAccounts" EntityType="FIT5032PortfolioModel.Store.UserAccounts" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserRoles" EntityType="FIT5032PortfolioModel.Store.UserRoles" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="HotelRoom" Association="FIT5032PortfolioModel.Store.HotelRoom">
       <End Role="Hotel" EntitySet="Hotels" />
       <End Role="Room" EntitySet="Rooms" />
+    </AssociationSet>
+    <AssociationSet Name="UserAccountsUserRole" Association="FIT5032PortfolioModel.Store.UserAccountsUserRole">
+      <End Role="UserAccounts" EntitySet="UserAccounts" />
+      <End Role="UserRole" EntitySet="UserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="HotelUserAccounts" Association="FIT5032PortfolioModel.Store.HotelUserAccounts">
+      <End Role="Hotel" EntitySet="Hotels" />
+      <End Role="UserAccounts" EntitySet="UserAccounts" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Hotels">
@@ -14,6 +24,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="HotelName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UserAccount_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Rooms">
     <Key>
@@ -24,6 +35,23 @@
     <Property Name="RoomDescription" Type="nvarchar(max)" Nullable="false" />
     <Property Name="HotelId" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="UserAccounts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ConfirmPassword" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UserRole_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleName" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
   <Association Name="HotelRoom">
     <End Role="Hotel" Type="FIT5032PortfolioModel.Store.Hotels" Multiplicity="1" />
     <End Role="Room" Type="FIT5032PortfolioModel.Store.Rooms" Multiplicity="*" />
@@ -33,6 +61,30 @@
       </Principal>
       <Dependent Role="Room">
         <PropertyRef Name="HotelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserAccountsUserRole">
+    <End Role="UserAccounts" Type="FIT5032PortfolioModel.Store.UserAccounts" Multiplicity="*" />
+    <End Role="UserRole" Type="FIT5032PortfolioModel.Store.UserRoles" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="UserRole">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserAccounts">
+        <PropertyRef Name="UserRole_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HotelUserAccounts">
+    <End Role="Hotel" Type="FIT5032PortfolioModel.Store.Hotels" Multiplicity="*" />
+    <End Role="UserAccounts" Type="FIT5032PortfolioModel.Store.UserAccounts" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="UserAccounts">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Hotel">
+        <PropertyRef Name="UserAccount_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

@@ -17,7 +17,11 @@ namespace FIT5032AssignmentPortfo.Controllers
         // GET: Rooms
         public ActionResult Index()
         {
-            var rooms = db.Rooms.Include(r => r.Hotel);
+            var email = Session["Email"].ToString();
+            var hotel = db.Hotels.Single(u => u.UserAccount.Email == email);
+            var hotelid = hotel.Id;
+            //var rooms = db.Rooms.Include(r => r.Hotel.Id == hotelid);
+            var rooms = db.Rooms.Include(r => r.Hotel).Where(r => r.Hotel.Id == hotelid);
             return View(rooms.ToList());
         }
 

@@ -128,6 +128,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HotelsController.cs" />
     <Compile Include="Controllers\RoomsController.cs" />
@@ -153,6 +154,12 @@
       <DependentUpon>FIT5032PortfolioModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Room.cs">
+      <DependentUpon>FIT5032PortfolioModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserAccounts.cs">
+      <DependentUpon>FIT5032PortfolioModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserRole.cs">
       <DependentUpon>FIT5032PortfolioModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -215,16 +222,20 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Hotels\Create.cshtml" />
-    <Content Include="Views\Hotels\Delete.cshtml" />
-    <Content Include="Views\Hotels\Details.cshtml" />
-    <Content Include="Views\Hotels\Edit.cshtml" />
-    <Content Include="Views\Hotels\Index.cshtml" />
     <Content Include="Views\Rooms\Create.cshtml" />
     <Content Include="Views\Rooms\Delete.cshtml" />
     <Content Include="Views\Rooms\Details.cshtml" />
     <Content Include="Views\Rooms\Edit.cshtml" />
     <Content Include="Views\Rooms\Index.cshtml" />
+    <Content Include="Views\Home\Register.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Dashboard\Dashboard.cshtml" />
+    <Content Include="Views\Hotels\Create.cshtml" />
+    <Content Include="Views\Hotels\Delete.cshtml" />
+    <Content Include="Views\Hotels\Details.cshtml" />
+    <Content Include="Views\Hotels\Edit.cshtml" />
+    <Content Include="Views\Hotels\Index.cshtml" />
+    <Content Include="Views\Home\CreateManager.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

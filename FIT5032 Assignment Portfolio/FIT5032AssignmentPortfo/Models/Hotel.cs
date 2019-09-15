@@ -25,5 +25,6 @@ namespace FIT5032AssignmentPortfo.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Room> Rooms { get; set; }
+        public virtual UserAccounts UserAccount { get; set; }
     }
 }
