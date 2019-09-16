@@ -58,7 +58,7 @@ namespace FIT5032AssignmentPortfo.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(UserAccounts userAccount)
         {
-            var usr = db.UserAccounts.Single(u => u.Email == userAccount.Email && u.Password == userAccount.Password);
+            var usr = db.UserAccounts.Where(u => u.Email == userAccount.Email && u.Password == userAccount.Password).FirstOrDefault();
             if (usr != null)
             {
                 Session["RoleName"] = usr.UserRole.RoleName.ToString(); 

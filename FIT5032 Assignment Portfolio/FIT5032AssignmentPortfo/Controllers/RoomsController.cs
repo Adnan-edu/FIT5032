@@ -43,7 +43,8 @@ namespace FIT5032AssignmentPortfo.Controllers
         // GET: Rooms/Create
         public ActionResult Create()
         {
-            ViewBag.HotelId = new SelectList(db.Hotels, "Id", "HotelName");
+            var email = Session["Email"].ToString();
+            ViewBag.HotelId = new SelectList(db.Hotels.Where(u => u.UserAccount.Email == email), "Id", "HotelName");
             return View();
         }
 
@@ -77,7 +78,8 @@ namespace FIT5032AssignmentPortfo.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.HotelId = new SelectList(db.Hotels, "Id", "HotelName", room.HotelId);
+            var email = Session["Email"].ToString();
+            ViewBag.HotelId = new SelectList(db.Hotels.Where(u => u.UserAccount.Email == email), "Id", "HotelName");
             return View(room);
         }
 
