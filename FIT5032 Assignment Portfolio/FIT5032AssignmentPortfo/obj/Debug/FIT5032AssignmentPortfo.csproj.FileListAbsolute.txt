@@ -78,3 +78,7 @@ C:\Users\Adnan\Desktop\Adnan\FIT5032\FIT5032 Assignment Portfolio\FIT5032Assignm
 C:\Users\Adnan\Desktop\Adnan\FIT5032\FIT5032 Assignment Portfolio\FIT5032AssignmentPortfo\bin\EntityFramework.xml
 C:\Users\Adnan\Desktop\Adnan\FIT5032\FIT5032 Assignment Portfolio\FIT5032AssignmentPortfo\bin\EntityFramework.SqlServer.xml
 C:\Users\Adnan\Desktop\Adnan\FIT5032\FIT5032 Assignment Portfolio\FIT5032AssignmentPortfo\obj\Debug\FIT5032AssignmentPortfo.csprojAssemblyReference.cache
+C:\Users\Adnan\Desktop\Adnan\FIT5032\FIT5032 Assignment Portfolio\FIT5032AssignmentPortfo\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Adnan\Desktop\Adnan\FIT5032\FIT5032 Assignment Portfolio\FIT5032AssignmentPortfo\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Adnan\Desktop\Adnan\FIT5032\FIT5032 Assignment Portfolio\FIT5032AssignmentPortfo\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Adnan\Desktop\Adnan\FIT5032\FIT5032 Assignment Portfolio\FIT5032AssignmentPortfo\bin\Microsoft.AspNet.Identity.EntityFramework.xml
