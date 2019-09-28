@@ -88,8 +88,8 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="CheckInDate" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="CheckOutDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CheckInDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="CheckOutDate" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="IsMealRequired" Type="Boolean" Nullable="false" />
     <Property Name="AspNetUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
     <Property Name="RoomId" Type="Int32" Nullable="false" />
@@ -104,6 +104,7 @@
     <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Rooms" Relationship="AssignmentFit5032Model.FK_HotelRoom" FromRole="Hotel" ToRole="Room" />
+    <Property Name="Rating" Type="Double" />
   </EntityType>
   <EntityType Name="Room">
     <Key>

@@ -56,8 +56,8 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="CheckInDate" Type="datetime" Nullable="false" />
-    <Property Name="CheckOutDate" Type="datetime" Nullable="false" />
+    <Property Name="CheckInDate" Type="date" Nullable="false" />
+    <Property Name="CheckOutDate" Type="date" Nullable="false" />
     <Property Name="IsMealRequired" Type="bit" Nullable="false" />
     <Property Name="AspNetUserId" Type="nvarchar" MaxLength="128" Nullable="false" />
     <Property Name="RoomId" Type="int" Nullable="false" />
@@ -69,6 +69,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Rating" Type="float" />
   </EntityType>
   <EntityType Name="Rooms">
     <Key>

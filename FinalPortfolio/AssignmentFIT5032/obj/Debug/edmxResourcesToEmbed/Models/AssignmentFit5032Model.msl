@@ -61,6 +61,7 @@
     <EntitySetMapping Name="Hotels">
       <EntityTypeMapping TypeName="AssignmentFit5032Model.Hotel">
         <MappingFragment StoreEntitySet="Hotels">
+          <ScalarProperty Name="Rating" ColumnName="Rating" />
           <ScalarProperty Name="Address" ColumnName="Address" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Id" ColumnName="Id" />
