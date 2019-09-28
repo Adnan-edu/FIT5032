@@ -18,6 +18,8 @@
         <AssociationConnector Association="AssignmentFit5032Model.FK_RoomBooking" />
         <AssociationConnector Association="AssignmentFit5032Model.FK_HotelRoom" />
         <AssociationConnector Association="AssignmentFit5032Model.AspNetUserRoles" />
+        <EntityTypeShape EntityType="AssignmentFit5032Model.HotelLocation" Width="1.5" PointX="6" PointY="7.375" />
+        <AssociationConnector Association="AssignmentFit5032Model.FK_HotelLoc" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

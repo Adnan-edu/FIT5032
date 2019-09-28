@@ -18,6 +18,7 @@ namespace AssignmentFIT5032.Models
         public Hotel()
         {
             this.Rooms = new HashSet<Room>();
+            this.HotelLocations = new HashSet<HotelLocation>();
         }
     
         public int Id { get; set; }
@@ -27,5 +28,7 @@ namespace AssignmentFIT5032.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Room> Rooms { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HotelLocation> HotelLocations { get; set; }
     }
 }

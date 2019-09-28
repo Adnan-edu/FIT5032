@@ -62,6 +62,16 @@
     <Property Name="AspNetUserId" Type="nvarchar" MaxLength="128" Nullable="false" />
     <Property Name="RoomId" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="HotelLocation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar(max)" Nullable="false" />
+    <Property Name="HotelId" Type="int" Nullable="false" />
+    <Property Name="Latitude" Type="numeric" Precision="10" Scale="8" Nullable="false" />
+    <Property Name="Longitude" Type="numeric" Precision="11" Scale="8" Nullable="false" />
+  </EntityType>
   <EntityType Name="Hotels">
     <Key>
       <PropertyRef Name="Id" />
@@ -148,6 +158,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_HotelLoc">
+    <End Role="Hotels" Type="Self.Hotels" Multiplicity="1" />
+    <End Role="HotelLocation" Type="Self.HotelLocation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotels">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HotelLocation">
+        <PropertyRef Name="HotelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_HotelRoom">
     <End Role="Hotels" Type="Self.Hotels" Multiplicity="1" />
     <End Role="Rooms" Type="Self.Rooms" Multiplicity="*" />
@@ -179,6 +201,7 @@
     <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Bookings" EntityType="Self.Bookings" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HotelLocation" EntityType="Self.HotelLocation" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Hotels" EntityType="Self.Hotels" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Rooms" EntityType="Self.Rooms" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_AspNetUserBooking" Association="Self.FK_AspNetUserBooking">
@@ -200,6 +223,10 @@
     <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HotelLoc" Association="Self.FK_HotelLoc">
+      <End Role="Hotels" EntitySet="Hotels" />
+      <End Role="HotelLocation" EntitySet="HotelLocation" />
     </AssociationSet>
     <AssociationSet Name="FK_HotelRoom" Association="Self.FK_HotelRoom">
       <End Role="Hotels" EntitySet="Hotels" />

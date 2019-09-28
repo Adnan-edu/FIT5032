@@ -213,6 +213,9 @@
     <Compile Include="Models\Hotel.cs">
       <DependentUpon>AssignmentFit5032Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\HotelLocation.cs">
+      <DependentUpon>AssignmentFit5032Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Room.cs">
