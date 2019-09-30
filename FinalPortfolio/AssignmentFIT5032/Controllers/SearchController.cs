@@ -12,28 +12,26 @@ namespace AssignmentFIT5032.Controllers
     public class SearchController : Controller
     {
         private AssignmentFit5032ModelContainer db = new AssignmentFit5032ModelContainer();
-        // GET: Search
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        public ActionResult SearchRooms()
+        //No one can access this method make this private
+        public ActionResult SearchRooms(List<Room> roomsEmpty)
         {
             var rooms = db.Rooms.Include(r => r.Hotel);
             return View(rooms.ToList());
         }
         public ActionResult SearchForBooking()
         {
+            
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult SearchForBooking([Bind(Include = "CheckInDate,CheckOutDate,IsMealRequired")] Booking booking)
+        public ActionResult SearchForBooking(RoomBookingModel BookingModel)
         {
+            Booking booking = BookingModel.ApplyBooking;
             //Adding booking constraint
             var already_booked = db.Bookings.Where(r => ((booking.CheckInDate >= r.CheckInDate) && (booking.CheckInDate <= r.CheckOutDate) || (booking.CheckOutDate >= r.CheckInDate) && (booking.CheckOutDate <= r.CheckOutDate))).Include(r=> r.Room).ToList<Booking>();
-            var rooms = db.Rooms.SqlQuery("SELECT * FROM dbo.Rooms").ToList();
+            //var rooms = db.Rooms.SqlQuery("SELECT * FROM dbo.Rooms").ToList();
+            var rooms = db.Rooms.Include(r => r.Hotel).ToList();
             if (rooms != null)
             {
                 foreach (var bookedRoom in already_booked)
@@ -43,12 +41,13 @@ namespace AssignmentFIT5032.Controllers
                         rooms.Remove(bookedRoom.Room);
                     }
                 }
-                var totalEmpty = rooms;
+                BookingModel.Rooms = rooms;
+                return View(BookingModel);
             }
 
-            //var rooms = db.Rooms.SqlQuery("SELECT * FROM dbo.Rooms WHERE Rooms.Id NOT IN (SELECT RoomId FROM dbo.Bookings WHERE ((('" + booking.CheckInDate + "' >= Convert.ToDateTime(CheckInDate)) AND ('" + booking.CheckInDate + "' <= Convert.ToDateTime(CheckOutDate))) OR (('" + booking.CheckOutDate + "' >= Convert.ToDateTime(CheckInDate)) AND ('" + booking.CheckOutDate + "' <= Convert.ToDateTime(CheckOutDate)))))").ToList();
-          
-            Console.WriteLine("Already Booked: " + already_booked.Count());
+            //Following codes were used to test whether booking data was saved to the database or not.
+
+            /*Console.WriteLine("Already Booked: " + already_booked.Count());
             Booking booking1 = new Booking();
             var userId = User.Identity.GetUserId().ToString();
             booking1.AspNetUser = db.AspNetUsers.Single(u => u.Id.ToString() == userId);
@@ -60,8 +59,26 @@ namespace AssignmentFIT5032.Controllers
             booking1.RoomId = 1;
             //booking1.Id = 1;
             db.Bookings.Add(booking1);
-            db.SaveChanges();
+            db.SaveChanges();*/
+
+            //End of testing data
+
             return View();
+        }
+        public ActionResult ConfirmBooking(int id, DateTime CheckInDate, DateTime CheckOutDate, bool IsMealRequired)
+        {
+            Booking booking1 = new Booking();
+            var userId = User.Identity.GetUserId().ToString();
+            booking1.AspNetUser = db.AspNetUsers.Single(u => u.Id.ToString() == userId);
+            //DateTime dateTime1 = new DateTime(booking.CheckInDate.Year, booking.CheckInDate.Month, booking.CheckInDate.Day);
+            //DateTime dateTime2 = new DateTime(booking.CheckOutDate.Year, booking.CheckOutDate.Month, booking.CheckOutDate.Day);
+            booking1.CheckInDate = CheckInDate;
+            booking1.CheckOutDate = CheckOutDate;
+            booking1.IsMealRequired = IsMealRequired;
+            booking1.RoomId = id;
+            db.Bookings.Add(booking1);
+            db.SaveChanges();
+            return RedirectToAction("Index","Bookings");
         }
 
     }
