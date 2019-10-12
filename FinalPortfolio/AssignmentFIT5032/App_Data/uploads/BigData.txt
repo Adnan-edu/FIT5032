@@ -1,0 +1,7 @@
+gloom() -> You can see partition structure
+
+There is a file format: Parquet
+crud operation
+logs in 
+able to do some crud operations 
+

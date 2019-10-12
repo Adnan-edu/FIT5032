@@ -207,4 +207,7 @@ C:\Users\Adnan\Desktop\Adnan\FIT5032\FinalPortfolio\AssignmentFIT5032\obj\Debug\
 C:\Users\Adnan\Desktop\Adnan\FIT5032\FinalPortfolio\AssignmentFIT5032\obj\Debug\AssignmentFIT5032.csproj.CopyComplete
 C:\Users\Adnan\Desktop\Adnan\FIT5032\FinalPortfolio\AssignmentFIT5032\obj\Debug\AssignmentFIT5032.dll
 C:\Users\Adnan\Desktop\Adnan\FIT5032\FinalPortfolio\AssignmentFIT5032\obj\Debug\AssignmentFIT5032.pdb
+C:\Users\Adnan\Desktop\Adnan\FIT5032\FinalPortfolio\AssignmentFIT5032\bin\SendGrid.dll
+C:\Users\Adnan\Desktop\Adnan\FIT5032\FinalPortfolio\AssignmentFIT5032\bin\SendGrid.pdb
+C:\Users\Adnan\Desktop\Adnan\FIT5032\FinalPortfolio\AssignmentFIT5032\bin\SendGrid.xml
 C:\Users\Adnan\Desktop\Adnan\FIT5032\FinalPortfolio\AssignmentFIT5032\obj\Debug\AssignmentFIT5032.csprojAssemblyReference.cache
