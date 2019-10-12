@@ -30,11 +30,16 @@ namespace AssignmentFIT5032.Controllers
         [HttpPost]
         public ActionResult Send_BulkEmail(BulkEmailViewModel model)
         {
+            if (model.ToEmail == null || model.Subject == null || model.Contents == null)
+            {
+                ViewBag.Result = "Please provide the required field.";
+                return View();
+            }
             try
             {
                 String toEmail = model.ToEmail;
                 String subject = model.Subject;
-                String contents = "No Contents Wow";
+                String contents = model.Contents;
                 //String contents = model.Contents;
 
                 string path = Server.MapPath("~/App_Data/uploads");
@@ -42,8 +47,8 @@ namespace AssignmentFIT5032.Controllers
                 string fullPath = Path.Combine(path, fileName);
                 model.AttachedFile.SaveAs(fullPath);
 
-                BulkEmailSender es = new BulkEmailSender();
-                es.Send(toEmail, subject, contents, model, fullPath);
+                BulkEmailSender bulkEmailSender = new BulkEmailSender();
+                bulkEmailSender.Send(toEmail, subject, contents, model, fullPath);
 
                 ViewBag.Result = "Email has been send.";
 

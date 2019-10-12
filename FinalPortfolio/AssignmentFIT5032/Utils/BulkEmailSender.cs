@@ -19,30 +19,25 @@ namespace AssignmentFIT5032.Utils
         {
             //BigData
             string fileName = Path.GetFileName(model.AttachedFile.FileName);
-
             var bytes = System.IO.File.ReadAllBytes(fullPath);
             var file = Convert.ToBase64String(bytes);
-            var client = new SendGridClient(API_KEY);
 
             var from = new EmailAddress("noreply@localhost.com", "FIT5032 Example Email User");
-            //var to = new EmailAddress(toEmail, "");
-
-            var to_emails = new List<EmailAddress>
+            string[] listOfToEmail = toEmail.Split(',');
+            var toEmailsList = new List<EmailAddress>();
+            for (int i = 0; i < listOfToEmail.Length; i++)
             {
-                new EmailAddress(toEmail, "Example User1"),
-                new EmailAddress("adnancse007@gmail.com", "Example User2")
+                toEmailsList.Add(new EmailAddress(listOfToEmail[i], "Customer "+(i+1)));
             };
 
-
+            var client = new SendGridClient(API_KEY);
             var msg = new SendGridMessage();
             var plainTextContent = contents;
-            var htmlContent = "<p>" + contents + "</p>";
             msg.SetFrom("noreply@localhost.com", "FIT5032 Example Email User");
             msg.PlainTextContent = plainTextContent;
             msg.Subject = subject;
-            //var msg = MailHelper.CreateSingleEmail(, subject, plainTextContent, htmlContent);
             msg.AddAttachment(model.AttachedFile.FileName, file);
-            msg.AddTos(to_emails);
+            msg.AddTos(toEmailsList);
             var response = client.SendEmailAsync(msg);
         }
     }
