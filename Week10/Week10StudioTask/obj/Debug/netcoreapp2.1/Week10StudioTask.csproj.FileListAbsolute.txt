@@ -1,0 +1,14 @@
+C:\Users\Adnan\Desktop\Adnan\FIT5032\Week10\Week10StudioTask\bin\Debug\netcoreapp2.1\Week10StudioTask.deps.json
+C:\Users\Adnan\Desktop\Adnan\FIT5032\Week10\Week10StudioTask\bin\Debug\netcoreapp2.1\Week10StudioTask.runtimeconfig.json
+C:\Users\Adnan\Desktop\Adnan\FIT5032\Week10\Week10StudioTask\bin\Debug\netcoreapp2.1\Week10StudioTask.runtimeconfig.dev.json
+C:\Users\Adnan\Desktop\Adnan\FIT5032\Week10\Week10StudioTask\bin\Debug\netcoreapp2.1\Week10StudioTask.dll
+C:\Users\Adnan\Desktop\Adnan\FIT5032\Week10\Week10StudioTask\bin\Debug\netcoreapp2.1\Week10StudioTask.pdb
+C:\Users\Adnan\Desktop\Adnan\FIT5032\Week10\Week10StudioTask\obj\Debug\netcoreapp2.1\Week10StudioTask.csprojAssemblyReference.cache
+C:\Users\Adnan\Desktop\Adnan\FIT5032\Week10\Week10StudioTask\obj\Debug\netcoreapp2.1\Week10StudioTask.csproj.CoreCompileInputs.cache
+C:\Users\Adnan\Desktop\Adnan\FIT5032\Week10\Week10StudioTask\obj\Debug\netcoreapp2.1\Week10StudioTask.RazorAssemblyInfo.cache
+C:\Users\Adnan\Desktop\Adnan\FIT5032\Week10\Week10StudioTask\obj\Debug\netcoreapp2.1\Week10StudioTask.RazorAssemblyInfo.cs
+C:\Users\Adnan\Desktop\Adnan\FIT5032\Week10\Week10StudioTask\obj\Debug\netcoreapp2.1\Week10StudioTask.AssemblyInfoInputs.cache
+C:\Users\Adnan\Desktop\Adnan\FIT5032\Week10\Week10StudioTask\obj\Debug\netcoreapp2.1\Week10StudioTask.AssemblyInfo.cs
+C:\Users\Adnan\Desktop\Adnan\FIT5032\Week10\Week10StudioTask\obj\Debug\netcoreapp2.1\Week10StudioTask.RazorTargetAssemblyInfo.cache
+C:\Users\Adnan\Desktop\Adnan\FIT5032\Week10\Week10StudioTask\obj\Debug\netcoreapp2.1\Week10StudioTask.dll
+C:\Users\Adnan\Desktop\Adnan\FIT5032\Week10\Week10StudioTask\obj\Debug\netcoreapp2.1\Week10StudioTask.pdb
