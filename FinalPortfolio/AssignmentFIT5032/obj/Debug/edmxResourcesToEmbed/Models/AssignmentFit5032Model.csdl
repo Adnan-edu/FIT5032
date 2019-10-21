@@ -37,6 +37,7 @@
       <End Role="Hotel" EntitySet="Hotels" />
       <End Role="HotelLocation" EntitySet="HotelLocations" />
     </AssociationSet>
+    <EntitySet Name="Ratings" EntityType="AssignmentFit5032Model.Rating" />
   </EntityContainer>
   <EntityType Name="AspNetRole">
     <Key>
@@ -100,6 +101,9 @@
     <Property Name="RoomId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="AspNetUser" Relationship="AssignmentFit5032Model.FK_AspNetUserBooking" FromRole="Booking" ToRole="AspNetUser" />
     <NavigationProperty Name="Room" Relationship="AssignmentFit5032Model.FK_RoomBooking" FromRole="Booking" ToRole="Room" />
+    <Property Name="IsRatingGiven" Type="Boolean" />
+    <Property Name="Contents" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="RATING" Type="Int32" />
   </EntityType>
   <EntityType Name="Hotel">
     <Key>
@@ -214,4 +218,11 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="Rating">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Number" Type="Int32" Nullable="false" />
+  </EntityType>
 </Schema>

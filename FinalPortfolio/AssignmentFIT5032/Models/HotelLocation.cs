@@ -11,16 +11,13 @@ namespace AssignmentFIT5032.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class HotelLocation
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public int HotelId { get; set; }
-        [DisplayFormat(DataFormatString = "{0:###.########}")]
         public decimal Latitude { get; set; }
-        [DisplayFormat(DataFormatString = "{0:###.########}")]
         public decimal Longitude { get; set; }
     
         public virtual Hotel Hotel { get; set; }

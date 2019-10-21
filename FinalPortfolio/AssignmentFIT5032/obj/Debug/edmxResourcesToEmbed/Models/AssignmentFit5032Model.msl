@@ -49,6 +49,9 @@
     <EntitySetMapping Name="Bookings">
       <EntityTypeMapping TypeName="AssignmentFit5032Model.Booking">
         <MappingFragment StoreEntitySet="Bookings">
+          <ScalarProperty Name="RATING" ColumnName="RATING" />
+          <ScalarProperty Name="Contents" ColumnName="Contents" />
+          <ScalarProperty Name="IsRatingGiven" ColumnName="IsRatingGiven" />
           <ScalarProperty Name="RoomId" ColumnName="RoomId" />
           <ScalarProperty Name="AspNetUserId" ColumnName="AspNetUserId" />
           <ScalarProperty Name="IsMealRequired" ColumnName="IsMealRequired" />
@@ -93,6 +96,14 @@
           <ScalarProperty Name="Latitude" ColumnName="Latitude" />
           <ScalarProperty Name="HotelId" ColumnName="HotelId" />
           <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ratings">
+      <EntityTypeMapping TypeName="AssignmentFit5032Model.Rating">
+        <MappingFragment StoreEntitySet="Ratings">
+          <ScalarProperty Name="Number" ColumnName="Number" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>

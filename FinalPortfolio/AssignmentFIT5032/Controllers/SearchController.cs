@@ -28,6 +28,11 @@ namespace AssignmentFIT5032.Controllers
         public ActionResult SearchForBooking(RoomBookingModel BookingModel)
         {
             Booking booking = BookingModel.ApplyBooking;
+            if (booking.CheckInDate > booking.CheckOutDate)
+            {
+                ViewBag.Message = "Checkin date must be before checkout date.";
+                return View();
+            }
             //Adding booking constraint
             var already_booked = db.Bookings.Where(r => ((booking.CheckInDate >= r.CheckInDate) && (booking.CheckInDate <= r.CheckOutDate) || (booking.CheckOutDate >= r.CheckInDate) && (booking.CheckOutDate <= r.CheckOutDate))).Include(r=> r.Room).ToList<Booking>();
             //var rooms = db.Rooms.SqlQuery("SELECT * FROM dbo.Rooms").ToList();
@@ -76,6 +81,7 @@ namespace AssignmentFIT5032.Controllers
             booking1.CheckOutDate = CheckOutDate;
             booking1.IsMealRequired = IsMealRequired;
             booking1.RoomId = id;
+            booking1.IsRatingGiven = false;
             db.Bookings.Add(booking1);
             db.SaveChanges();
             return RedirectToAction("Index","Bookings");

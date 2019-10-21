@@ -6,8 +6,15 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <script src="~/Scripts/tinymce/tinymce.min.js"></script>
     <style>
-        #map { position:absolute; top:100px; bottom:200px; width:80%; }
+        #map {
+            position: absolute;
+            top: 100px;
+            bottom: 200px;
+            width: 80%;
+        }
+
         .geocoder {
             position: absolute;
             z-index: 1;
@@ -31,6 +38,7 @@
     <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.min.js'></script>
     <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.css' type='text/css' />
 
+
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -41,7 +49,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Hotel", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -52,15 +60,16 @@
                     {
                         <li>@Html.ActionLink("Hotel", "Index", "Hotels")</li>
                         <li>@Html.ActionLink("Rooms", "Index", "Rooms")</li>
-                        <li>@Html.ActionLink("Hotel Map", "Index", "HotelLocations")</li>
-                        <li>@Html.ActionLink("Send Bulk Email", "Send_BulkEmail", "Hotels")</li>
+                        <li>@Html.ActionLink("BulkEmail", "Send_BulkEmail", "Hotels")</li>
+                        <li>@Html.ActionLink("Chart", "ChartVizualization", "Hotels")</li>
                     }
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li>@Html.ActionLink("Booking", "Index", "Bookings")</li>
                         <!-- <li>@Html.ActionLink("Rooms", "SearchRooms", "Search")</li>-->
                         <li>@Html.ActionLink("SearchRooms", "SearchForBooking", "Search")</li>
-                        <li>@Html.ActionLink("Send Email", "Send_Email", "Hotels")</li>
+                        <li>@Html.ActionLink("Email", "Send_Email", "Hotels")</li>
+                        <li>@Html.ActionLink("HotelMap", "Index", "HotelLocations")</li>
                     }
                 </ul>
                     @Html.Partial("_LoginPartial")
@@ -71,7 +80,7 @@
             @RenderBody()
             <hr />
             <footer>
-                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+                <p>&copy; @DateTime.Now.Year - madn0001@student.monash.edu</p>
             </footer>
         </div>
 

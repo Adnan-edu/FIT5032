@@ -33,5 +33,6 @@ namespace AssignmentFIT5032.Models
         public virtual DbSet<Hotel> Hotels { get; set; }
         public virtual DbSet<Room> Rooms { get; set; }
         public virtual DbSet<HotelLocation> HotelLocations { get; set; }
+        public virtual DbSet<Rating> Ratings { get; set; }
     }
 }

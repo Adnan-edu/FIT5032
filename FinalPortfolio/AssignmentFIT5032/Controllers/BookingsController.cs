@@ -17,7 +17,8 @@ namespace AssignmentFIT5032.Controllers
         // GET: Bookings
         public ActionResult Index()
         {
-            var bookings = db.Bookings.Include(b => b.AspNetUser).Include(b => b.Room);
+            var userIdentity = User.Identity.Name;
+            var bookings = db.Bookings.Include(b => b.AspNetUser).Where(b=> b.AspNetUser.Email == userIdentity).Include(b => b.Room);
             return View(bookings.ToList());
         }
 
@@ -131,6 +132,63 @@ namespace AssignmentFIT5032.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+        public ActionResult GiveRating(int? id)
+        {
+            Booking booking = db.Bookings.Find(id);
+            var ratings = db.Bookings.Include(b => b.AspNetUser).Include(b => b.Room).Include(b => b.Room.Hotel);
+            ViewBag.RATING = new SelectList(db.Ratings, "Id", "Number");
+            ViewBag.AspNetUserId = new SelectList(db.AspNetUsers, "Id", "Email", booking.AspNetUserId);
+            ViewBag.RoomId = new SelectList(db.Rooms, "Id", "RoomName", booking.RoomId);
+            return View(booking);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult GiveRating([Bind(Include = "Id,CheckInDate,CheckOutDate,IsMealRequired,AspNetUserId,RoomId,RATING,Contents")]Booking booking)
+        {
+            var newBooking = booking;
+            var idOfBooking = booking.Id;
+            //booking.AspNetUserId = booking.AspNetUserId;
+            var aspNetUserId = booking.AspNetUserId;
+            if (ModelState.IsValid)
+            {
+                var updatedBooking = db.Bookings.Include(b => b.AspNetUser).Where(b => b.Id == booking.Id).Include(b => b.Room).ToList();
+                newBooking = updatedBooking.FirstOrDefault();
+                newBooking.RATING = booking.RATING;
+                newBooking.Contents = booking.Contents;
+                //Calculate rating for the hotel
+                var hotel = newBooking.Room.Hotel;
+
+                newBooking.IsRatingGiven = true;
+                newBooking.IsMealRequired = booking.IsMealRequired;
+
+                var calculatedRating = this.CalculateRatings(newBooking.RATING);
+                hotel.Rating = calculatedRating;
+                
+                db.Entry(hotel).State = EntityState.Modified;
+                db.Entry(newBooking).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.RATING = new SelectList(db.Ratings, "Id", "Number");
+            return View(booking);
+        }
+        private double CalculateRatings(int? rating)
+        {
+            var bookingRating = db.Bookings.Where(b => b.RATING > 0).ToList();
+
+            var countRating = bookingRating.Count() + 1;
+
+            int? sumRating = 0;
+            foreach (Booking bookRat in bookingRating)
+            {
+                    sumRating = sumRating + bookRat.RATING;
+            }
+            if (rating > 0)
+            {
+                sumRating = sumRating + rating;
+            }
+            return (double)sumRating / countRating;
         }
     }
 }

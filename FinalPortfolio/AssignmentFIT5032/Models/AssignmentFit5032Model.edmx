@@ -64,6 +64,9 @@
           <Property Name="CheckInDate" Type="date" Nullable="false" />
           <Property Name="CheckOutDate" Type="date" Nullable="false" />
           <Property Name="IsMealRequired" Type="bit" Nullable="false" />
+          <Property Name="IsRatingGiven" Type="bit" />
+          <Property Name="Contents" Type="varchar(max)" />
+          <Property Name="RATING" Type="int" />
           <Property Name="AspNetUserId" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="RoomId" Type="int" Nullable="false" />
         </EntityType>
@@ -85,6 +88,13 @@
           <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Rating" Type="float" />
+        </EntityType>
+        <EntityType Name="Ratings">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Number" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Rooms">
           <Key>
@@ -208,6 +218,7 @@
           <EntitySet Name="Bookings" EntityType="Self.Bookings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HotelLocation" EntityType="Self.HotelLocation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Hotels" EntityType="Self.Hotels" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ratings" EntityType="Self.Ratings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rooms" EntityType="Self.Rooms" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_AspNetUserBooking" Association="Self.FK_AspNetUserBooking">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -283,6 +294,7 @@
             <End Role="Hotel" EntitySet="Hotels" />
             <End Role="HotelLocation" EntitySet="HotelLocations" />
           </AssociationSet>
+          <EntitySet Name="Ratings" EntityType="AssignmentFit5032Model.Rating" />
         </EntityContainer>
         <EntityType Name="AspNetRole">
           <Key>
@@ -346,6 +358,9 @@
           <Property Name="RoomId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="AspNetUser" Relationship="AssignmentFit5032Model.FK_AspNetUserBooking" FromRole="Booking" ToRole="AspNetUser" />
           <NavigationProperty Name="Room" Relationship="AssignmentFit5032Model.FK_RoomBooking" FromRole="Booking" ToRole="Room" />
+          <Property Name="IsRatingGiven" Type="Boolean" />
+          <Property Name="Contents" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="RATING" Type="Int32" />
         </EntityType>
         <EntityType Name="Hotel">
           <Key>
@@ -460,6 +475,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Rating">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Number" Type="Int32" Nullable="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -514,6 +536,9 @@
           <EntitySetMapping Name="Bookings">
             <EntityTypeMapping TypeName="AssignmentFit5032Model.Booking">
               <MappingFragment StoreEntitySet="Bookings">
+                <ScalarProperty Name="RATING" ColumnName="RATING" />
+                <ScalarProperty Name="Contents" ColumnName="Contents" />
+                <ScalarProperty Name="IsRatingGiven" ColumnName="IsRatingGiven" />
                 <ScalarProperty Name="RoomId" ColumnName="RoomId" />
                 <ScalarProperty Name="AspNetUserId" ColumnName="AspNetUserId" />
                 <ScalarProperty Name="IsMealRequired" ColumnName="IsMealRequired" />
@@ -558,6 +583,14 @@
                 <ScalarProperty Name="Latitude" ColumnName="Latitude" />
                 <ScalarProperty Name="HotelId" ColumnName="HotelId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ratings">
+            <EntityTypeMapping TypeName="AssignmentFit5032Model.Rating">
+              <MappingFragment StoreEntitySet="Ratings">
+                <ScalarProperty Name="Number" ColumnName="Number" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

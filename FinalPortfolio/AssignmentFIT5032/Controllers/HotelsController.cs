@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
@@ -8,7 +9,7 @@ using AssignmentFIT5032.Models;
 using AssignmentFIT5032.Utils;
 using SendGrid;
 using SendGrid.Helpers.Mail;
-
+using Newtonsoft.Json;
 
 namespace AssignmentFIT5032.Controllers
 {
@@ -73,16 +74,20 @@ namespace AssignmentFIT5032.Controllers
         [HttpPost]
         public ActionResult Send_Email(SendEmailViewModel model)
         {
+            if (model.ToEmail == null || model.Subject == null || model.Contents == null)
+            {
+                @ViewBag.Message = "Please privide the required fields.";
+                return View();
+            }
                 try
                 {
                     String toEmail = model.ToEmail;
                     String subject = model.Subject;
-                    String contents = "No Contents Wow";
-                    //String contents = model.Contents;
+                    String contents = model.Contents;
                     EmailSender es = new EmailSender();
                     es.Send(toEmail, subject, contents);
 
-                    ViewBag.Result = "Email has been send.";
+                    ViewBag.Message = "Email has been sent.";
 
                     ModelState.Clear();
 
@@ -115,6 +120,7 @@ namespace AssignmentFIT5032.Controllers
         // GET: Hotels/Create
         public ActionResult Create()
         {
+            var jsonData = this.ChartVizualization();
             return View();
         }
 
@@ -125,8 +131,15 @@ namespace AssignmentFIT5032.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Name,Address")] Hotel hotel)
         {
+            if (hotel.Name == null || hotel.Address == null)
+            {
+                ViewBag.Message = "Hotel name or address can't be empty";
+                return View();
+            }
             if (ModelState.IsValid)
             {
+                //During hotel creation hotel rating will be 0.0
+                hotel.Rating = 0.0;
                 db.Hotels.Add(hotel);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -199,6 +212,50 @@ namespace AssignmentFIT5032.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public List<CustomerBookingChart> GetResult()
+        {
+           
+
+            //Getting customer user role
+            var userRole = db.AspNetRoles.Single(u => u.Name == "Customer");
+            var UserList = db.AspNetUsers.Include(b=> b.AspNetRoles).ToList();
+            var RoleList = UserList;
+            var userList = db.AspNetUsers.Include(b => b.AspNetRoles).Include(b=> b.Bookings).ToList();
+            List<CustomerBookingChart> BookingList = new List<CustomerBookingChart>();
+            foreach(var customerBooking in userList)
+            {
+              //  if (customerBooking.AspNetRoles.Contains(userRole))
+               // {
+                    var bookingsPerCustomer = db.Bookings.Include(b => b.AspNetUser).Where(b => b.AspNetUser.Email == customerBooking.Email).Include(b => b.Room).ToList().Count();
+                    //var BookingCount = db.Bookings.Where(b => b.AspNetUser.Id == customerBooking.Id).GroupBy(b=> b.AspNetUser.Id).Count();
+                    CustomerBookingChart BookingChart  = new CustomerBookingChart();
+                    BookingChart.CustomerEmail = customerBooking.Email;
+                    BookingChart.NoOfBooking = bookingsPerCustomer;
+                    BookingList.Add(BookingChart);
+               // }  
+
+            }
+            return BookingList;
+        }
+        [Authorize(Roles = "Admin")]
+        public ActionResult ChartVizualization()
+        {
+            List<CustomerBookingChart> bookingList = GetResult();
+            List<DataPoint> dataPoints = new List<DataPoint>();
+            foreach (var bookingcount in bookingList)
+            {
+                dataPoints.Add(new DataPoint(bookingcount.CustomerEmail, bookingcount.NoOfBooking));
+            }
+            /*dataPoints.Add(new DataPoint("Customer 6", 8));
+            dataPoints.Add(new DataPoint("Customer 7", 9));
+            dataPoints.Add(new DataPoint("Customer 8", 9));
+            dataPoints.Add(new DataPoint("Customer 11", 9));
+            dataPoints.Add(new DataPoint("Customer 20", 9));
+            dataPoints.Add(new DataPoint("Customer 71", 9));*/
+            ViewBag.DataPoints = JsonConvert.SerializeObject(dataPoints);
+            return View();
         }
     }
 }

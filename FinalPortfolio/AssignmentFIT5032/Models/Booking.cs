@@ -11,7 +11,8 @@ namespace AssignmentFIT5032.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Web.Mvc;
+
     public partial class Booking
     {
         public int Id { get; set; }
@@ -20,6 +21,10 @@ namespace AssignmentFIT5032.Models
         public bool IsMealRequired { get; set; }
         public string AspNetUserId { get; set; }
         public int RoomId { get; set; }
+        public Nullable<bool> IsRatingGiven { get; set; }
+        [AllowHtml]
+        public string Contents { get; set; }
+        public Nullable<int> RATING { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
         public virtual Room Room { get; set; }

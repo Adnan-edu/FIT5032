@@ -11,7 +11,9 @@ namespace AssignmentFIT5032.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
+
     public partial class Room
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,9 +21,13 @@ namespace AssignmentFIT5032.Models
         {
             this.Bookings = new HashSet<Booking>();
         }
-    
+
         public int Id { get; set; }
+        [Required]
+        [AllowHtml]
         public string RoomName { get; set; }
+        [Required]
+        [AllowHtml]
         public string Description { get; set; }
         public int HotelId { get; set; }
     

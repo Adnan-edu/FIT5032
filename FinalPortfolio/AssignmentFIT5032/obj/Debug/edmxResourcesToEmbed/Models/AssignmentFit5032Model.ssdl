@@ -59,6 +59,9 @@
     <Property Name="CheckInDate" Type="date" Nullable="false" />
     <Property Name="CheckOutDate" Type="date" Nullable="false" />
     <Property Name="IsMealRequired" Type="bit" Nullable="false" />
+    <Property Name="IsRatingGiven" Type="bit" />
+    <Property Name="Contents" Type="varchar(max)" />
+    <Property Name="RATING" Type="int" />
     <Property Name="AspNetUserId" Type="nvarchar" MaxLength="128" Nullable="false" />
     <Property Name="RoomId" Type="int" Nullable="false" />
   </EntityType>
@@ -80,6 +83,13 @@
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Rating" Type="float" />
+  </EntityType>
+  <EntityType Name="Ratings">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Number" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Rooms">
     <Key>
@@ -203,6 +213,7 @@
     <EntitySet Name="Bookings" EntityType="Self.Bookings" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="HotelLocation" EntityType="Self.HotelLocation" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Hotels" EntityType="Self.Hotels" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ratings" EntityType="Self.Ratings" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Rooms" EntityType="Self.Rooms" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_AspNetUserBooking" Association="Self.FK_AspNetUserBooking">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />

@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AssignmentFIT5032.Models;
+using System.Text;
 
 namespace AssignmentFIT5032.Controllers
 {
@@ -47,9 +48,35 @@ namespace AssignmentFIT5032.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult Create([Bind(Include = "Id,RoomName,Description,HotelId")] Room room)
         {
+
+            //Preventation of cross site scripting attack
+            StringBuilder sbContentsRoom = new StringBuilder();
+            sbContentsRoom.Append(HttpUtility.HtmlEncode(room.RoomName));
+            //We are allowing bold, underline and paragraph
+            sbContentsRoom.Replace("&lt;b&gt;", "<b>");
+            sbContentsRoom.Replace("&lt;/b&gt;", "</b>");
+            sbContentsRoom.Replace("&lt;u&gt;", "<u>");
+            sbContentsRoom.Replace("&lt;/u&gt;", "</u>");
+            sbContentsRoom.Replace("&lt;p&gt;", "<p>");
+            sbContentsRoom.Replace("&lt;/p&gt;", "</p>");
+
+            room.RoomName = sbContentsRoom.ToString();
+
+
+            StringBuilder sbContentsDesc = new StringBuilder();
+            sbContentsDesc.Append(HttpUtility.HtmlEncode(room.Description));
+            //We are allowing bold, underline and paragraph
+            sbContentsDesc.Replace("&lt;b&gt;", "<b>");
+            sbContentsDesc.Replace("&lt;/b&gt;", "</b>");
+            sbContentsDesc.Replace("&lt;u&gt;", "<u>");
+            sbContentsDesc.Replace("&lt;/u&gt;", "</u>");
+            sbContentsDesc.Replace("&lt;p&gt;", "<p>");
+            sbContentsDesc.Replace("&lt;/p&gt;", "</p>");
+            room.Description = sbContentsDesc.ToString();
+
             if (ModelState.IsValid)
             {
                 db.Rooms.Add(room);

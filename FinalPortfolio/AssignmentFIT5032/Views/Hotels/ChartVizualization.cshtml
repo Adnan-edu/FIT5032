@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "ChartVizualization";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ChartVizualization</h2>
+
+
+
+<div id="chartContainer" style="height: 370px; width: 100%;"></div>
+
+<script src="~/Scripts/canvasjs.min.js"></script>
+<script>
+    window.onload=function(){var chart=new CanvasJS.Chart("chartContainer",{animationEnabled:!0,theme:"light2",title:{text:"Number of Bookings under Each Customer"},axisY:{title:"No. of Bookings"},data:[{type:"column",dataPoints:@Html.Raw(ViewBag.DataPoints)}]});chart.render()}
+</script>
+
+
+

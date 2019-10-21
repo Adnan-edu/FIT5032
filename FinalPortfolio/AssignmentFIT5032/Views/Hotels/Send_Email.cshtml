@@ -10,33 +10,40 @@
 
 @using (Html.BeginForm("Send_Email", "Hotels", FormMethod.Post, new { @enctype = "multipart/form-data" }))
 {
-    <form>
-        <div class="form-group">
-            <label for="exampleInputEmail1">Name</label>
-
-            <input type="text" class="form-control" name="ToEmail" id="ToEmail" placeholder="Email To">
+    @Html.AntiForgeryToken()
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-2">
+                <label for="ToEmail" class="col-sm-2 control-label">Email To</label>
+            </div>
+            <div class="col-sm-10">
+                <input type="email" class="form-control" id="ToEmail" name="ToEmail" placeholder="Email To" value="">
+            </div>
         </div>
-        <div class="form-group">
-            <label for="model">Subject</label>
-            <input type="text" class="form-control" name="Subject" id="Subject" placeholder="Subject">
+        <div class="row">
+            <div class="col-sm-2">
+                <label for="Subject" class="col-sm-2 control-label">Subject</label>
+            </div>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="Subject" name="Subject" placeholder="Subject" value="">
+            </div>
         </div>
-        <div class="custom-file">
 
-            <input type="file" class="custom-file-input" name="AttachedFile" id="AttachedFile">
-            
+        <div class="row">
+            <div class="col-sm-2">
+                <label for="Contents" class="col-sm-2 control-label">Contents</label>
+            </div>
+            <div class="col-sm-10">
+                <textarea class="form-control" rows="4" name="Contents"></textarea>
+            </div>
         </div>
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary">Upload</button>
+
+        <div class="row">
+            <button type="submit" class="btn btn-primary">Send</button>
         </div>
-        @ViewBag.Message
-    </form>
-
-
+    </div>
+    @ViewBag.Message
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
