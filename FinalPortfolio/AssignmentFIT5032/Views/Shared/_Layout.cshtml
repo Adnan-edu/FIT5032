@@ -61,9 +61,12 @@
                         <li>@Html.ActionLink("Hotel", "Index", "Hotels")</li>
                         <li>@Html.ActionLink("Rooms", "Index", "Rooms")</li>
                         <li>@Html.ActionLink("BulkEmail", "Send_BulkEmail", "Hotels")</li>
+                        <li>@Html.ActionLink("Email", "Send_Email", "Hotels")</li>
+                        <li>@Html.ActionLink("SearchRooms", "SearchForBooking", "Search")</li>
+                        <li>@Html.ActionLink("Booking", "Index", "Bookings")</li>
                         <li>@Html.ActionLink("Chart", "ChartVizualization", "Hotels")</li>
                     }
-                    @if (User.Identity.IsAuthenticated)
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Customer"))
                     {
                         <li>@Html.ActionLink("Booking", "Index", "Bookings")</li>
                         <!-- <li>@Html.ActionLink("Rooms", "SearchRooms", "Search")</li>-->

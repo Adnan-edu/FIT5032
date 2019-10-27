@@ -51,34 +51,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.js"></script>
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/bootstrap")
-    <script>
-        $(document).ready(function () {
-            var emails = "";
-            $("#messageTo").val("");
-            $("#messageSubject").val("");
-            $("#messageBody").val("");
-            var val = '@(ViewBag.Result)';
-            if (val === 'success') {
-                $('#myModal').modal('toggle');
-            } else {
-            }
-            var $select = $('#messageTo').selectize({
-                delimiter: ',',
-                persist: false,
-                create: function (input) {
-                    return {
-                        value: input,
-                        text: input
-                    }
-                }
-            });
-            console.log($select);
-            var selectize = $select[0].selectize;
-            selectize.on('change', function () {
-                var test = selectize.getValue();
-                $("#messageTo").val(test);
-            });
-        })
-    </script>
+    <script>$(document).ready(function(){var emails="";$("#messageTo").val("");$("#messageSubject").val("");$("#messageBody").val("");var val='@(ViewBag.Result)';if(val==='success'){$('#myModal').modal('toggle')}else{}
+var $select=$('#messageTo').selectize({delimiter:';',persist:!1,create:function(input){return{value:input,text:input}}});console.log($select);var selectize=$select[0].selectize;selectize.on('change',function(){var test=selectize.getValue();$("#messageTo").val(test)})})</script>
 }
 
